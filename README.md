@@ -7,17 +7,17 @@ http://flask.pocoo.org/docs/patterns/appdispatch/#dispatch-by-subdomain
 
 1. Add the following to your hosts file (/etc/hosts on Ubuntu):
 
-    0.0.0.0 dev.localhost
-    0.0.0.0 qa.localhost
+        0.0.0.0 dev.localhost
+        0.0.0.0 qa.localhost
 
 2. Install Flask
 
-    virtualenv venv
-    source venv/bin/activate
-    pip install Flask==0.10.1
+        virtualenv venv
+        source venv/bin/activate
+        pip install Flask==0.10.1
 
 3. Run the local development server
 
-    python subdomainexample.py
+        python subdomainexample.py
 
 4. Visit http://dev.localhost:5000/ and http://qa.localhost:5000/ in the browser
