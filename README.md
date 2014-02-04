@@ -2,7 +2,7 @@ This demonstrates how to run a local development server which uses a
 different configuration based on the subdomain of the request. It
 creates a separate instance of the app per subdomain. See here for more
 information:
-flask.pocoo.org/docs/patterns/appdispatch/#dispatch-by-subdomain
+http://flask.pocoo.org/docs/patterns/appdispatch/#dispatch-by-subdomain
 
 
 1. Add the following to your hosts file (/etc/hosts on Ubuntu):
