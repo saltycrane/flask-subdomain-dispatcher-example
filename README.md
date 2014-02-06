@@ -20,4 +20,7 @@ http://flask.pocoo.org/docs/patterns/appdispatch/#dispatch-by-subdomain
 
         python subdomainexample.py
 
-4. Visit http://dev.localhost:5000/ and http://qa.localhost:5000/ in the browser
+4. Visit the following URLs in the browser:
+   - http://localhost:5000/
+   - http://dev.localhost:5000/
+   - http://qa.localhost:5000/
