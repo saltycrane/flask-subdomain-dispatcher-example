@@ -58,19 +58,19 @@ class SubdomainDispatcher(object):
     NOTE: this is only used by the local development server.
     """
 
-    def __init__(self, domain, create_app, *args, **kwargs):
+    def __init__(self, create_app, domain='', *args, **kwargs):
         """
-        :param domain: str - used to determine the subdomain
         :param create_app: a function that returns a `flask.Flask` instance
+        :param domain: str - used to determine the subdomain
         :param args: *args passed to create_app
         :param kwargs: **kwargs passed to create_app
         """
-        self.domain = domain
         self.create_app = create_app
-        self.lock = Lock()
-        self.instances = {}
+        self.domain = domain
         self.args = args
         self.kwargs = kwargs
+        self.lock = Lock()
+        self.instances = {}
 
     def __call__(self, environ, start_response):
         app = self._get_application(environ['HTTP_HOST'])
@@ -106,7 +106,7 @@ class SubdomainDispatcher(object):
         return config
 
 
-def rundevserver(host=None, port=None, debug=True, **options):
+def rundevserver(host=None, port=None, domain='', debug=True, **options):
     """
     Modified from `flask.Flask.run`
 
@@ -116,6 +116,7 @@ def rundevserver(host=None, port=None, debug=True, **options):
                  have the server available externally as well. Defaults to
                  ``'127.0.0.1'``.
     :param port: the port of the webserver. Defaults to ``5000``
+    :param domain: used to determine the subdomain
     :param debug: if given, enable or disable debug mode.
                   See :attr:`debug`.
     :param options: the options to be forwarded to the underlying
@@ -132,10 +133,10 @@ def rundevserver(host=None, port=None, debug=True, **options):
     options.setdefault('use_reloader', debug)
     options.setdefault('use_debugger', debug)
 
-    app = SubdomainDispatcher('localhost', create_app, debug=debug)
+    app = SubdomainDispatcher(create_app, domain, debug=debug)
 
     run_simple(host, port, app, **options)
 
 
 if __name__ == '__main__':
-    rundevserver()
+    rundevserver(host='0.0.0.0', port=5000, domain='localhost')
