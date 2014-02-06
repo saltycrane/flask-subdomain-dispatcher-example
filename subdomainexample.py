@@ -25,7 +25,7 @@ class FakeDatabase(object):
         return 'FakeDatabase(host={})'.format(self.host)
 
 
-def create_app(debug=False, subdomain=None, configobj=None):
+def create_app(debug=False, configobj=None):
     app = Flask(__name__)
     app.debug = debug
 
